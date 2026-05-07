@@ -84,21 +84,21 @@ export function Dashboard({ posts, onUploadClick }: DashboardProps) {
             <div className="space-y-6">
                <div className="flex gap-4">
                   <div className="w-16 h-16 bg-white rounded-xl overflow-hidden">
-                     <img src="/images/dashboard/market-fertilizer.jpg" referrerPolicy="no-referrer" />
+                     <img src="/images/dashboard/phan_no_tao_bien.jpg" referrerPolicy="no-referrer" />
                   </div>
                   <div>
-                     <p className="text-xs font-bold text-primary">GIẢM 20%</p>
-                     <p className="text-sm font-bold">Phân tảo biển hữu cơ</p>
+                     <p className="text-xs font-bold text-primary">NỔI BẬT</p>
+                     <p className="text-sm font-bold">Phân nở tảo biển</p>
                      <p className="text-xs text-outline">18.500đ</p>
                   </div>
                </div>
                <div className="flex gap-4">
                   <div className="w-16 h-16 bg-white rounded-xl overflow-hidden">
-                     <img src="/images/dashboard/market-soil.jpg" referrerPolicy="no-referrer" />
+                     <img src="/images/dashboard/dat_trong_kieng_la.jpg" referrerPolicy="no-referrer" />
                   </div>
                   <div>
-                     <p className="text-xs font-bold text-primary">ƯU ĐÃI</p>
-                     <p className="text-sm font-bold">Đất trộn Aroid</p>
+                     <p className="text-xs font-bold text-primary">ƯU TIÊN HÈ</p>
+                     <p className="text-sm font-bold">Đất trồng kiểng lá</p>
                      <p className="text-xs text-outline">12.990đ</p>
                   </div>
                </div>

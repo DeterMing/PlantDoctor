@@ -22,36 +22,100 @@ const MOCK_PLANTS: Plant[] = [
     nextCare: 'Sáng mai',
     careType: 'Cắt tỉa',
     location: 'Ban công đón nắng',
+    reports: [
+      {
+        id: 'r-hg-1',
+        date: '06 Tháng 05, 2026',
+        diagnosis: 'Thiếu nắng nhẹ - Hoa nở thưa',
+        status: 'Ổn định',
+        summary: 'Tán lá xanh tốt, nhưng số cụm hoa giảm do 2 tuần gần đây thiếu nắng trực tiếp.',
+        details: {
+          causes: [
+            { title: 'Ánh sáng', items: ['Thời gian nắng trực tiếp dưới 4 giờ/ngày'] }
+          ],
+          actions: ['Đưa chậu ra vị trí có nắng sáng 5-6 giờ', 'Tỉa cành tăm để kích đợt hoa mới']
+        },
+        notes: 'Ưu tiên bón phân cao lân-kali định kỳ 2 tuần/lần.'
+      }
+    ]
   },
   {
     id: '2',
-    name: 'Phong Lá Đỏ',
-    scientificName: 'Acer Palmatum',
+    name: 'Cây Kim Tiền',
+    scientificName: 'Zamioculcas zamiifolia',
     image: '/images/plants/cay_kim_tien.jpg',
     status: 'Cần nước',
     nextCare: 'Chiều nay',
     careType: 'Tưới nước',
     location: 'Phòng khách',
+    reports: [
+      {
+        id: 'r-kt-1',
+        date: '05 Tháng 05, 2026',
+        diagnosis: 'Giá thể khô kéo dài',
+        status: 'Cần nước',
+        summary: 'Bề mặt đất khô sâu, cuống lá hơi nhăn do thiếu ẩm trong nhà máy lạnh.',
+        details: {
+          causes: [
+            { title: 'Độ ẩm đất', items: ['Đất khô hơn 5 cm từ bề mặt'] }
+          ],
+          actions: ['Tưới đẫm 1 lần, để ráo hoàn toàn', 'Duy trì chu kỳ tưới 7-10 ngày/lần']
+        },
+        notes: 'Tránh tưới dồn dập nhiều ngày liên tiếp để hạn chế úng rễ.'
+      }
+    ]
   },
   {
     id: '3',
-    name: 'Sen đá nâu',
-    scientificName: 'Graptopetalum paraguayense',
-    image: '/images/plants/fiddleleaf.jpg',
+    name: 'Cây Lan Ý',
+    scientificName: 'Spathiphyllum wallisii',
+    image: '/images/plants/cay_lan_y.jpg',
     status: 'Ổn định',
     nextCare: '3 ngày nữa',
     careType: 'Bón phân',
     location: 'Bệ cửa sổ bếp',
+    reports: [
+      {
+        id: 'r-ly-1',
+        date: '04 Tháng 05, 2026',
+        diagnosis: 'Cháy mép lá mức nhẹ',
+        status: 'Đang theo dõi',
+        summary: 'Một số lá già khô đầu lá do nước cứng và độ ẩm không khí thấp.',
+        details: {
+          causes: [
+            { title: 'Chất lượng nước tưới', items: ['Nước máy giàu khoáng gây cháy mép lá'] }
+          ],
+          actions: ['Dùng nước để qua đêm hoặc nước lọc để tưới', 'Tăng ẩm khu vực trồng bằng khay sỏi ẩm']
+        },
+        notes: 'Lan Ý ưa sáng tán xạ, tránh nắng gắt buổi trưa.'
+      }
+    ]
   },
   {
     id: '4',
-    name: 'Hoa giấy Thái',
-    scientificName: 'Bougainvillea glabra',
-    image: '/images/plants/olive.jpg',
+    name: 'Cây Hoa Nhài',
+    scientificName: 'Jasminum sambac',
+    image: '/images/plants/cay_hoa_nhai.jpg',
     status: 'Cần nước',
     nextCare: 'Tối nay',
     careType: 'Cắt tỉa',
     location: 'Cổng trước nhà',
+    reports: [
+      {
+        id: 'r-hn-1',
+        date: '07 Tháng 05, 2026',
+        diagnosis: 'Rệp mềm giai đoạn sớm',
+        status: 'Đang theo dõi',
+        summary: 'Phát hiện cụm rệp nhỏ ở đọt non, cây vẫn sinh trưởng tốt.',
+        details: {
+          causes: [
+            { title: 'Sâu hại', items: ['Rệp mềm tập trung ở ngọn non và nụ hoa'] }
+          ],
+          actions: ['Lau rệp bằng khăn ẩm hoặc phun xà phòng sinh học loãng', 'Tỉa bớt cành rậm để thông thoáng']
+        },
+        notes: 'Theo dõi lại sau 3 ngày để đánh giá mật độ rệp.'
+      }
+    ]
   },
 ];
 
@@ -166,7 +230,7 @@ const MOCK_NOTIFICATIONS: Notification[] = [
   {
     id: '1',
     title: 'Lịch tưới cây quá hạn',
-    message: 'Cây Phong Lá Đỏ và Cây Ô Liu cần được tưới nước ngay lập tức.',
+    message: 'Cây Kim Tiền và Cây Hoa Nhài cần được tưới nước trong hôm nay.',
     type: 'care',
     timestamp: '15 phút trước'
   },
