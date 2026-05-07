@@ -13,6 +13,10 @@ export function MarketView({ products, onAddToCart }: MarketViewProps) {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedRegion, setSelectedRegion] = useState<string>('Tất cả');
   const [justAddedProductId, setJustAddedProductId] = useState<string | null>(null);
+  const baseMinPrice = 0;
+  const baseMaxPrice = Math.max(...products.map((p) => p.price), 2000000);
+  const [selectedMinPrice, setSelectedMinPrice] = useState<number>(baseMinPrice);
+  const [selectedMaxPrice, setSelectedMaxPrice] = useState<number>(baseMaxPrice);
 
   const categories = ['Cây cảnh', 'Phân bón', 'Đất trồng', 'Chậu cây', 'Dụng cụ'];
   const regions = ['Tất cả', 'Bắc', 'Trung', 'Nam'];
@@ -20,7 +24,8 @@ export function MarketView({ products, onAddToCart }: MarketViewProps) {
   const filteredProducts = products.filter(p => {
     const categoryMatch = selectedCategories.length === 0 || selectedCategories.includes(p.category);
     const regionMatch = selectedRegion === 'Tất cả' || p.region === selectedRegion;
-    return categoryMatch && regionMatch;
+    const priceMatch = p.price >= selectedMinPrice && p.price <= selectedMaxPrice;
+    return categoryMatch && regionMatch && priceMatch;
   });
 
   const toggleCategory = (cat: string) => {
@@ -91,10 +96,47 @@ export function MarketView({ products, onAddToCart }: MarketViewProps) {
 
         <section className="hidden md:block">
           <h3 className="font-headline text-xl font-bold mb-6 text-primary">Khoảng giá</h3>
-          <input type="range" className="w-full accent-primary" />
-          <div className="flex justify-between mt-2 text-xs text-outline font-bold">
-            <span>0đ</span>
-            <span>2.000.000đ+</span>
+          <div className="space-y-3">
+            <div>
+              <div className="flex items-center justify-between mb-1 text-[10px] uppercase tracking-widest text-outline font-bold">
+                <span>Từ</span>
+                <span>{selectedMinPrice.toLocaleString('vi-VN')}đ</span>
+              </div>
+              <input
+                type="range"
+                min={baseMinPrice}
+                max={baseMaxPrice}
+                step={5000}
+                value={selectedMinPrice}
+                onChange={(e) => {
+                  const nextMin = Number(e.target.value);
+                  setSelectedMinPrice(Math.min(nextMin, selectedMaxPrice));
+                }}
+                className="w-full accent-primary"
+              />
+            </div>
+            <div>
+              <div className="flex items-center justify-between mb-1 text-[10px] uppercase tracking-widest text-outline font-bold">
+                <span>Đến</span>
+                <span>{selectedMaxPrice.toLocaleString('vi-VN')}đ</span>
+              </div>
+              <input
+                type="range"
+                min={baseMinPrice}
+                max={baseMaxPrice}
+                step={5000}
+                value={selectedMaxPrice}
+                onChange={(e) => {
+                  const nextMax = Number(e.target.value);
+                  setSelectedMaxPrice(Math.max(nextMax, selectedMinPrice));
+                }}
+                className="w-full accent-primary"
+              />
+            </div>
+          </div>
+          <div className="flex justify-between mt-3 text-xs text-outline font-bold">
+            <span>{baseMinPrice.toLocaleString('vi-VN')}đ</span>
+            <span>{baseMaxPrice.toLocaleString('vi-VN')}đ</span>
           </div>
         </section>
 

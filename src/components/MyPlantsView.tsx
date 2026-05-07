@@ -21,7 +21,7 @@ export function MyPlantsView({ plants }: MyPlantsViewProps) {
       <header className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-8">
         <div className="max-w-2xl">
           <h1 className="text-4xl md:text-5xl font-headline text-primary font-bold mb-4">Vườn của tôi</h1>
-          <p className="text-on-surface-variant text-lg leading-relaxed">Bộ sưu tập những người bạn thực vật của bạn. Quản lý {plants.length} mẫu vật trên các vùng tiểu khí hậu địa phương.</p>
+          <p className="text-on-surface-variant text-lg leading-relaxed">Những loại cây dễ sống trong mùa hè Việt Nam, phù hợp từ nhà phố đến căn hộ. Theo dõi {plants.length} chậu cây mỗi ngày theo cách gần gũi, dễ làm.</p>
         </div>
         <div className="flex gap-4">
           <button className="bg-surface-container-high text-on-surface px-6 py-3 rounded-xl font-bold flex items-center gap-2 hover:bg-surface-container-highest transition-colors">
