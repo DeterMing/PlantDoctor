@@ -7,6 +7,7 @@ import { MarketView } from './components/MarketView';
 import { MyPlantsView } from './components/MyPlantsView';
 import { SettingsView } from './components/SettingsView';
 import { WeatherView } from './components/WeatherView';
+import { CheckoutView } from './components/CheckoutView';
 import { Plant, Product, Post, WeatherData, Notification, CartItem } from './types';
 import { AnimatePresence, motion } from 'motion/react';
 import { Camera } from 'lucide-react';
@@ -231,6 +232,17 @@ export default function App() {
         return <MyPlantsView plants={MOCK_PLANTS} />;
       case 'settings':
         return <SettingsView onBack={() => setActiveTab('dashboard')} />;
+      case 'checkout':
+        return (
+          <CheckoutView 
+            items={cartItems} 
+            onBack={() => setActiveTab('market')} 
+            onComplete={() => {
+              setCartItems([]);
+              setActiveTab('dashboard');
+            }}
+          />
+        );
       default:
         return <Dashboard posts={MOCK_POSTS} onUploadClick={() => setActiveTab('diagnostic')} />;
     }
@@ -245,6 +257,7 @@ export default function App() {
         cartItems={cartItems}
         onRemoveFromCart={handleRemoveFromCart}
         onUpdateQuantity={handleUpdateQuantity}
+        onCheckout={() => setActiveTab('checkout')}
       />
       
       <main className="mx-auto max-w-7xl px-4 md:px-6 pb-32 md:pb-12">

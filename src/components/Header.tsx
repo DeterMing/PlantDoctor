@@ -11,6 +11,7 @@ interface HeaderProps {
   cartItems: CartItem[];
   onRemoveFromCart: (id: string) => void;
   onUpdateQuantity: (id: string, delta: number) => void;
+  onCheckout: () => void;
 }
 
 export function Header({ 
@@ -19,7 +20,8 @@ export function Header({
   notifications, 
   cartItems,
   onRemoveFromCart,
-  onUpdateQuantity
+  onUpdateQuantity,
+  onCheckout
 }: HeaderProps) {
   const [isNotifOpen, setIsNotifOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -104,6 +106,10 @@ export function Header({
               onClose={() => setIsCartOpen(false)}
               onRemove={onRemoveFromCart}
               onUpdateQuantity={onUpdateQuantity}
+              onCheckout={() => {
+                onCheckout();
+                setIsCartOpen(false);
+              }}
             />
           </div>
 

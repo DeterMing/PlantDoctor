@@ -8,9 +8,10 @@ interface CartPopoverProps {
   onClose: () => void;
   onRemove: (id: string) => void;
   onUpdateQuantity: (id: string, delta: number) => void;
+  onCheckout: () => void;
 }
 
-export function CartPopover({ items, isOpen, onClose, onRemove, onUpdateQuantity }: CartPopoverProps) {
+export function CartPopover({ items, isOpen, onClose, onRemove, onUpdateQuantity, onCheckout }: CartPopoverProps) {
   const total = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
 
   return (
@@ -94,7 +95,10 @@ export function CartPopover({ items, isOpen, onClose, onRemove, onUpdateQuantity
                   <span className="text-primary">Tổng cộng:</span>
                   <span className="text-xl text-primary">{total.toLocaleString('vi-VN')}đ</span>
                 </div>
-                <button className="w-full botanical-gradient text-on-primary py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-xl active:scale-95 transition-all">
+                <button 
+                  onClick={onCheckout}
+                  className="w-full botanical-gradient text-on-primary py-4 rounded-xl font-bold flex items-center justify-center gap-2 shadow-xl active:scale-95 transition-all"
+                >
                   Thanh toán ngay
                 </button>
               </div>
