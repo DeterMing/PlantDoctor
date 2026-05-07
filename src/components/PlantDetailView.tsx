@@ -177,8 +177,8 @@ export function PlantDetailView({ plant, onClose }: PlantDetailViewProps) {
                     Loại bỏ các cành héo, làm sạch bụi bề mặt lá để tăng khả năng quang hợp cho mùa đông.
                   </p>
                   <div className="flex gap-4">
-                    <img src="https://picsum.photos/seed/p1/200/200" className="w-24 h-24 rounded-2xl object-cover shadow-md" referrerPolicy="no-referrer" />
-                    <img src="https://picsum.photos/seed/p2/200/200" className="w-24 h-24 rounded-2xl object-cover shadow-md" referrerPolicy="no-referrer" />
+                    <img src="/images/plants/activity-1.jpg" className="w-24 h-24 rounded-2xl object-cover shadow-md" referrerPolicy="no-referrer" />
+                    <img src="/images/plants/activity-2.jpg" className="w-24 h-24 rounded-2xl object-cover shadow-md" referrerPolicy="no-referrer" />
                   </div>
                 </div>
               </div>

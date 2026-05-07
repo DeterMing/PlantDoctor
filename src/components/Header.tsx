@@ -27,7 +27,7 @@ export function Header({
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const tabs = [
-    { id: 'dashboard', label: 'Bảng điều khiển' },
+    { id: 'dashboard', label: 'Tổng quan' },
     { id: 'diagnostic', label: 'Bác sĩ' },
     { id: 'weather', label: 'Thời tiết' },
     { id: 'market', label: 'Cửa hàng' },

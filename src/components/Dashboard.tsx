@@ -14,7 +14,7 @@ export function Dashboard({ posts, onUploadClick }: DashboardProps) {
       <aside className="lg:col-span-3 space-y-8">
         <div className="bg-surface-container-lowest p-6 rounded-3xl shadow-sm flex flex-row lg:flex-col items-center gap-6 lg:gap-0">
           <img 
-            src="https://picsum.photos/seed/gardener/200/200" 
+            src="/images/dashboard/gardener-profile.jpg" 
             className="w-20 h-20 lg:w-24 lg:h-24 rounded-full mb-0 lg:mb-4 object-cover border-4 border-surface-container"
             referrerPolicy="no-referrer"
           />
@@ -84,7 +84,7 @@ export function Dashboard({ posts, onUploadClick }: DashboardProps) {
             <div className="space-y-6">
                <div className="flex gap-4">
                   <div className="w-16 h-16 bg-white rounded-xl overflow-hidden">
-                     <img src="https://picsum.photos/seed/fert/100/100" referrerPolicy="no-referrer" />
+                     <img src="/images/dashboard/market-fertilizer.jpg" referrerPolicy="no-referrer" />
                   </div>
                   <div>
                      <p className="text-xs font-bold text-primary">GIẢM 20%</p>
@@ -94,7 +94,7 @@ export function Dashboard({ posts, onUploadClick }: DashboardProps) {
                </div>
                <div className="flex gap-4">
                   <div className="w-16 h-16 bg-white rounded-xl overflow-hidden">
-                     <img src="https://picsum.photos/seed/soil/100/100" referrerPolicy="no-referrer" />
+                     <img src="/images/dashboard/market-soil.jpg" referrerPolicy="no-referrer" />
                   </div>
                   <div>
                      <p className="text-xs font-bold text-primary">ƯU ĐÃI</p>

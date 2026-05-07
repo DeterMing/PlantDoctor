@@ -20,7 +20,7 @@ export function MyPlantsView({ plants }: MyPlantsViewProps) {
     <div className="py-12 animate-fade-in relative min-h-screen">
       <header className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-8">
         <div className="max-w-2xl">
-          <h1 className="text-4xl md:text-5xl font-headline text-primary font-bold mb-4">Vườn Mùa Đông</h1>
+          <h1 className="text-4xl md:text-5xl font-headline text-primary font-bold mb-4">Vườn của tôi</h1>
           <p className="text-on-surface-variant text-lg leading-relaxed">Bộ sưu tập những người bạn thực vật của bạn. Quản lý {plants.length} mẫu vật trên các vùng tiểu khí hậu địa phương.</p>
         </div>
         <div className="flex gap-4">

@@ -11,7 +11,7 @@ export function WeatherView({ weather }: WeatherViewProps) {
       title: 'Di chuyển cây mẫn cảm vào trong nhà',
       desc: 'Dự báo có mưa bão nhiệt đới vào tối nay. Hãy bảo vệ các tán lá mỏng manh và tránh tình trạng úng nước cho đất.',
       priority: 'Cao',
-      image: 'https://picsum.photos/seed/indoors/400/400',
+      image: '/images/weather/move-indoors.jpg',
     },
     {
       title: 'Thời điểm lý tưởng để bón phân',
@@ -37,7 +37,7 @@ export function WeatherView({ weather }: WeatherViewProps) {
           <img 
             alt="Misty skyline" 
             className="w-full h-full object-cover" 
-            src="https://picsum.photos/seed/hanoi/1200/800" 
+            src="/images/weather/hero-hanoi.jpg" 
             referrerPolicy="no-referrer"
           />
         </div>
