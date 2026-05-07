@@ -1,0 +1,13 @@
+{
+  "name": "PlantDoctor",
+  "description": "AI Plant Doctor and Garden Management platform. Document your botanical journey, diagnose plant issues with AI, and manage your garden collection.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "AI-powered plant diagnosis",
+    "Garden collection management",
+    "Care scheduling",
+    "Botanical marketplace"
+  ]
+}

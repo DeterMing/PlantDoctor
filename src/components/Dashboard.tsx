@@ -1,0 +1,108 @@
+import { motion } from 'motion/react';
+import { Camera, Plus } from 'lucide-react';
+import { Post } from '../types';
+
+interface DashboardProps {
+  posts: Post[];
+  onUploadClick: () => void;
+}
+
+export function Dashboard({ posts, onUploadClick }: DashboardProps) {
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 py-8 animate-fade-in">
+      {/* Left rail - Profile & Stats */}
+      <aside className="lg:col-span-3 space-y-8">
+        <div className="bg-surface-container-lowest p-6 rounded-3xl shadow-sm flex flex-col items-center">
+          <img 
+            src="https://picsum.photos/seed/gardener/200/200" 
+            className="w-24 h-24 rounded-full mb-4 object-cover border-4 border-surface-container"
+            referrerPolicy="no-referrer"
+          />
+          <h2 className="font-headline text-xl font-bold text-primary">Hi Brother</h2>
+          <p className="text-xs text-outline uppercase tracking-widest mb-6">Chuyên gia làm vườn</p>
+          <div className="grid grid-cols-2 gap-4 w-full">
+            <div className="bg-surface-container-low p-4 rounded-2xl text-center">
+              <span className="block text-2xl font-bold text-primary">12</span>
+              <span className="text-[10px] uppercase font-bold text-outline">Cây trồng</span>
+            </div>
+            <div className="bg-surface-container-low p-4 rounded-2xl text-center">
+              <span className="block text-2xl font-bold text-primary">95%</span>
+              <span className="text-[10px] uppercase font-bold text-outline">Sức khỏe</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      {/* Main content - AI Banner & Feed */}
+      <main className="lg:col-span-6 space-y-8">
+        <section className="relative overflow-hidden rounded-3xl botanical-gradient p-10 text-on-primary">
+          <div className="relative z-10 max-w-sm">
+            <h1 className="font-headline text-3xl font-bold mb-4 leading-tight">Chẩn đoán triệu chứng trong tích tắc với AI thực vật.</h1>
+            <p className="text-on-primary/80 mb-6 font-medium">Phân tích vân lá để phát hiện thiếu hụt dinh dưỡng và sâu bệnh ngay lập tức.</p>
+            <button 
+              onClick={onUploadClick}
+              className="bg-white text-primary px-6 py-3 rounded-xl font-bold flex items-center gap-2 hover:scale-105 active:scale-95 transition-all shadow-xl"
+            >
+              <Camera className="h-5 w-5" />
+              Chụp ảnh lá cây
+            </button>
+          </div>
+          <div className="absolute right-0 bottom-0 opacity-10 blur-sm translate-x-1/4 translate-y-1/4">
+            <Plus className="w-64 h-64" />
+          </div>
+        </section>
+
+        <section className="space-y-6">
+          <h3 className="font-headline text-2xl font-bold text-primary">Lưu trữ cộng đồng</h3>
+          {posts.map((post) => (
+            <article key={post.id} className="bg-surface-container-lowest rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all">
+              <img src={post.image} className="w-full h-64 object-cover" referrerPolicy="no-referrer" />
+              <div className="p-8">
+                <div className="flex items-center gap-3 mb-4">
+                  <img src={post.author.avatar} className="w-8 h-8 rounded-full" referrerPolicy="no-referrer" />
+                  <span className="text-sm font-bold text-primary">{post.author.name}</span>
+                  <span className="text-xs text-outline">• {post.timestamp}</span>
+                </div>
+                <h4 className="font-headline text-2xl font-bold mb-2">{post.title}</h4>
+                <p className="text-on-surface-variant leading-relaxed text-sm line-clamp-2">{post.content}</p>
+                <div className="mt-6 flex gap-4 text-outline border-t border-outline-variant/10 pt-4">
+                   <button className="flex items-center gap-1 text-xs hover:text-primary">❤️ {post.likes}</button>
+                   <button className="flex items-center gap-1 text-xs hover:text-primary">💬 {post.comments}</button>
+                </div>
+              </div>
+            </article>
+          ))}
+        </section>
+      </main>
+
+      {/* Right rail - Market Deals */}
+      <aside className="lg:col-span-3 space-y-8">
+         <div className="bg-surface-container-high/30 p-8 rounded-3xl border border-outline-variant/10">
+            <h3 className="font-headline text-xl font-bold mb-6 text-primary">Tiêu điểm thị trường</h3>
+            <div className="space-y-6">
+               <div className="flex gap-4">
+                  <div className="w-16 h-16 bg-white rounded-xl overflow-hidden">
+                     <img src="https://picsum.photos/seed/fert/100/100" referrerPolicy="no-referrer" />
+                  </div>
+                  <div>
+                     <p className="text-xs font-bold text-primary">GIẢM 20%</p>
+                     <p className="text-sm font-bold">Phân tảo biển hữu cơ</p>
+                     <p className="text-xs text-outline">18.500đ</p>
+                  </div>
+               </div>
+               <div className="flex gap-4">
+                  <div className="w-16 h-16 bg-white rounded-xl overflow-hidden">
+                     <img src="https://picsum.photos/seed/soil/100/100" referrerPolicy="no-referrer" />
+                  </div>
+                  <div>
+                     <p className="text-xs font-bold text-primary">ƯU ĐÃI</p>
+                     <p className="text-sm font-bold">Đất trộn Aroid</p>
+                     <p className="text-xs text-outline">12.990đ</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </aside>
+    </div>
+  );
+}
