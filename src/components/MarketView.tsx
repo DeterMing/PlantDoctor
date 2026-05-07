@@ -2,6 +2,7 @@ import { Product } from '../types';
 import { ShoppingCart, Star, Filter, MapPin } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useState } from 'react';
+import type { MouseEvent } from 'react';
 
 interface MarketViewProps {
   products: Product[];
@@ -11,6 +12,7 @@ interface MarketViewProps {
 export function MarketView({ products, onAddToCart }: MarketViewProps) {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedRegion, setSelectedRegion] = useState<string>('Tất cả');
+  const [justAddedProductId, setJustAddedProductId] = useState<string | null>(null);
 
   const categories = ['Cây cảnh', 'Phân bón', 'Đất trồng', 'Chậu cây', 'Dụng cụ'];
   const regions = ['Tất cả', 'Bắc', 'Trung', 'Nam'];
@@ -25,6 +27,16 @@ export function MarketView({ products, onAddToCart }: MarketViewProps) {
     setSelectedCategories(prev => 
       prev.includes(cat) ? prev.filter(c => c !== cat) : [...prev, cat]
     );
+  };
+
+  const handleAddToCart = (event: MouseEvent<HTMLButtonElement>, product: Product) => {
+    event.preventDefault();
+    event.stopPropagation();
+    onAddToCart(product);
+    setJustAddedProductId(product.id);
+    window.setTimeout(() => {
+      setJustAddedProductId((prev) => (prev === product.id ? null : prev));
+    }, 1200);
   };
 
   return (
@@ -140,11 +152,12 @@ export function MarketView({ products, onAddToCart }: MarketViewProps) {
                   <span className="text-[10px] text-outline font-bold">({product.reviews})</span>
                 </div>
                 <button 
-                  onClick={() => onAddToCart(product)}
+                  type="button"
+                  onClick={(event) => handleAddToCart(event, product)}
                   className="w-full py-4 botanical-gradient text-on-primary rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/10 group-hover:scale-[1.02] transition-transform active:scale-95"
                 >
                   <ShoppingCart className="h-4 w-4" />
-                  Thêm vào giỏ
+                  {justAddedProductId === product.id ? 'Đã thêm' : 'Thêm vào giỏ'}
                 </button>
               </div>
             </motion.div>

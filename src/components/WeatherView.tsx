@@ -64,11 +64,11 @@ export function WeatherView({ weather }: WeatherViewProps) {
             </div>
           </div>
 
-          <div className="grid grid-cols-5 gap-3 overflow-x-auto pb-4 lg:pb-0">
+          <div className="flex gap-3 overflow-x-auto no-scrollbar pb-2 lg:pb-0 -mx-4 px-4 lg:mx-0 lg:px-0 lg:grid lg:grid-cols-5 snap-x snap-mandatory">
             {weather.forecast.map((f) => (
-              <div key={f.day} className="flex flex-col items-center bg-white/10 backdrop-blur-md p-5 rounded-3xl min-w-[90px] border border-white/5">
-                <span className="text-[10px] font-bold opacity-70 mb-3 tracking-widest uppercase">{f.day}</span>
-                <Sun className="h-6 w-6 mb-3" />
+              <div key={f.day} className="flex flex-col items-center bg-white/10 backdrop-blur-xl p-5 rounded-3xl min-w-[110px] lg:min-w-0 border border-white/10 snap-center">
+                <span className="text-[10px] font-bold opacity-80 mb-3 tracking-widest uppercase">{f.day}</span>
+                <Sun className="h-6 w-6 mb-3 text-secondary-container" />
                 <span className="text-xl font-bold">{f.temp}°</span>
               </div>
             ))}

@@ -24,27 +24,16 @@ export function PlantDetailView({ plant, onClose }: PlantDetailViewProps) {
         actions: ['Cắt tỉa lá bệnh', 'Bón phân Kali Sunfat']
       },
       notes: 'Đã di chuyển vào nơi mát hơn.'
-    },
-    {
-      id: 'r2',
-      date: '05 Tháng 03, 2026',
-      diagnosis: 'Tình trạng ổn định',
-      status: 'Xanh tốt',
-      summary: 'Cây phát triển bình thường, lá mới xẻ đều.',
-      details: {
-        causes: [],
-        actions: ['Duy trì chế độ chăm sóc']
-      }
     }
   ];
 
   return (
     <motion.div
-      initial={{ x: '100%' }}
-      animate={{ x: 0 }}
-      exit={{ x: '100%' }}
-      transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-      className="fixed inset-y-0 right-0 z-[60] w-full max-w-2xl bg-surface-container-lowest shadow-2xl overflow-y-auto font-body"
+      initial={{ y: '100%' }}
+      animate={{ y: 0 }}
+      exit={{ y: '100%' }}
+      transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+      className="fixed inset-0 lg:inset-y-0 lg:right-0 lg:left-auto z-[60] w-full lg:max-w-2xl bg-surface-container-lowest shadow-2xl overflow-y-auto font-body rounded-t-[40px] lg:rounded-none"
     >
       <div className="relative">
         <button 

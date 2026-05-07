@@ -1,16 +1,28 @@
-import { Search, Bell, User, CloudSun } from 'lucide-react';
+import { Search, Bell, User, CloudSun, ShoppingCart } from 'lucide-react';
 import { useState } from 'react';
 import { NotificationPopover } from './NotificationPopover';
-import { Notification } from '../types';
+import { CartPopover } from './CartPopover';
+import { Notification, CartItem } from '../types';
 
 interface HeaderProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
   notifications: Notification[];
+  cartItems: CartItem[];
+  onRemoveFromCart: (id: string) => void;
+  onUpdateQuantity: (id: string, delta: number) => void;
 }
 
-export function Header({ activeTab, setActiveTab, notifications }: HeaderProps) {
+export function Header({ 
+  activeTab, 
+  setActiveTab, 
+  notifications, 
+  cartItems,
+  onRemoveFromCart,
+  onUpdateQuantity
+}: HeaderProps) {
   const [isNotifOpen, setIsNotifOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const tabs = [
     { id: 'dashboard', label: 'Bảng điều khiển' },
@@ -21,11 +33,11 @@ export function Header({ activeTab, setActiveTab, notifications }: HeaderProps) 
   ];
 
   return (
-    <header className="glass-nav sticky top-0 z-50 border-b border-outline-variant/30 px-6 py-4">
+    <header className="glass-nav sticky top-0 z-50 border-b border-outline-variant/30 px-4 md:px-6 py-3 md:py-4">
       <div className="mx-auto flex max-w-7xl items-center justify-between">
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-4 md:gap-8">
           <span 
-            className="font-headline text-2xl font-bold italic text-primary cursor-pointer"
+            className="font-headline text-xl md:text-2xl font-bold italic text-primary cursor-pointer transition-transform active:scale-95"
             onClick={() => setActiveTab('dashboard')}
           >
             PlantDoctor
@@ -35,7 +47,7 @@ export function Header({ activeTab, setActiveTab, notifications }: HeaderProps) 
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-3 py-1 text-sm font-medium transition-all flex items-center gap-2 ${
+                className={`px-3 py-1 text-sm font-medium transition-all ${
                   activeTab === tab.id
                     ? 'border-b-2 border-primary text-primary font-bold'
                     : 'text-on-surface-variant hover:text-primary'
@@ -47,8 +59,8 @@ export function Header({ activeTab, setActiveTab, notifications }: HeaderProps) 
           </nav>
         </div>
 
-        <div className="flex items-center gap-4">
-          <div className="relative hidden sm:block">
+        <div className="flex items-center gap-2 md:gap-4">
+          <div className="relative hidden lg:block">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-outline" />
             <input
               type="text"
@@ -60,11 +72,11 @@ export function Header({ activeTab, setActiveTab, notifications }: HeaderProps) 
           <div className="relative">
             <button 
               onClick={() => setIsNotifOpen(!isNotifOpen)}
-              className={`rounded-full p-2 transition-colors relative ${isNotifOpen ? 'bg-secondary-container text-primary' : 'text-primary hover:bg-surface-container-high'}`}
+              className={`rounded-full p-2.5 transition-colors relative ${isNotifOpen ? 'bg-secondary-container text-primary' : 'text-primary hover:bg-surface-container-high'}`}
             >
               <Bell className="h-5 w-5" />
               {notifications.length > 0 && (
-                <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full border border-white"></span>
+                <span className="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border border-white"></span>
               )}
             </button>
             <NotificationPopover 
@@ -74,9 +86,30 @@ export function Header({ activeTab, setActiveTab, notifications }: HeaderProps) 
             />
           </div>
 
+          <div className="relative">
+            <button 
+              onClick={() => setIsCartOpen(!isCartOpen)}
+              className={`rounded-full p-2.5 transition-colors relative ${isCartOpen ? 'bg-secondary-container text-primary' : 'text-primary hover:bg-surface-container-high'}`}
+            >
+              <ShoppingCart className="h-5 w-5" />
+              {cartItems.length > 0 && (
+                <span className="absolute top-2 right-2 w-4 h-4 bg-primary text-white text-[10px] font-bold rounded-full border border-white flex items-center justify-center">
+                  {cartItems.length}
+                </span>
+              )}
+            </button>
+            <CartPopover 
+              items={cartItems}
+              isOpen={isCartOpen}
+              onClose={() => setIsCartOpen(false)}
+              onRemove={onRemoveFromCart}
+              onUpdateQuantity={onUpdateQuantity}
+            />
+          </div>
+
           <button 
             onClick={() => setActiveTab('settings')}
-            className={`rounded-full p-2 transition-colors ${activeTab === 'settings' ? 'bg-secondary-container text-primary' : 'text-primary hover:bg-surface-container-high'}`}
+            className={`rounded-full p-2.5 transition-colors ${activeTab === 'settings' ? 'bg-secondary-container text-primary' : 'text-primary hover:bg-surface-container-high'}`}
           >
             <User className="h-5 w-5" />
           </button>
