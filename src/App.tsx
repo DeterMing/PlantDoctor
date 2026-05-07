@@ -188,7 +188,20 @@ const MOCK_POSTS: Post[] = [
       role: 'Quản trị cộng đồng',
     },
     title: 'Mùa nắng ở TP.HCM: chăm trầu bà sao cho lá không cháy mép?',
-    content: 'Nhà phố nóng vào buổi trưa rất dễ làm lá trầu bà bị vàng mép. Mình đã thử dời chậu vào vị trí có nắng sáng nhẹ, tưới sớm trước 8h và tăng ẩm bằng khay sỏi. Sau khoảng 10 ngày, lá non ra đều và xanh hơn.',
+    content: `Trầu bà rất dễ chăm, nhưng vào đợt nắng gắt ở TP.HCM thì lá vẫn có thể cháy mép nếu đặt gần kính hướng Tây hoặc tưới sai thời điểm.
+
+Mình đã thử theo quy trình đơn giản trong 2 tuần:
+- Dời chậu vào khu vực có nắng nhẹ buổi sáng, tránh nắng trưa trực tiếp.
+- Tưới sớm trước 8h, lượng vừa đủ làm ẩm đều bầu đất.
+- Lau lá 2 lần/tuần để giảm bụi và giúp lá quang hợp tốt hơn.
+- Đặt thêm khay sỏi có nước phía dưới để tăng ẩm không khí quanh tán lá.
+
+Kết quả sau 10 ngày:
+- Lá mới ra đều, xanh đậm hơn.
+- Mép lá cũ không lan rộng thêm.
+- Cây đứng form gọn, ít rũ vào buổi chiều.
+
+Nếu bạn trồng trong căn hộ kín máy lạnh, nên kiểm tra ẩm đất bằng ngón tay (sâu khoảng 2-3cm) trước khi tưới để tránh vừa thiếu ẩm không khí vừa úng rễ.`,
     image: '/images/community/trau_ba.jpg',
     likes: 186,
     comments: 34,
@@ -203,7 +216,21 @@ const MOCK_POSTS: Post[] = [
       role: 'Người trồng cây ban công',
     },
     title: 'Checklist 5 phút sau mưa lớn để cứu cây chậu ở Hà Nội',
-    content: 'Sau mưa, mình ưu tiên kiểm tra lỗ thoát nước, nghiêng chậu cho ráo nhanh và cắt bỏ lá dập để tránh nấm. Với hoa nhài và lan ý, chỉ cần thêm bước đặt nơi thoáng gió 1-2 giờ là cây phục hồi rất tốt.',
+    content: `Mùa mưa ở Hà Nội thường đến nhanh và dồn dập. Chỉ cần 5 phút kiểm tra sau mưa là đã giảm rất nhiều nguy cơ thối rễ, nấm lá.
+
+Checklist mình đang dùng:
+1) Kiểm tra lỗ thoát nước: nếu tắc thì thông ngay bằng que nhỏ.
+2) Nghiêng chậu 10-15 phút để nước đọng thoát bớt.
+3) Cắt lá dập, lá úa và lá bị đọng nước quá nhiều.
+4) Tạm đưa cây vào chỗ thoáng gió, có ánh sáng tán xạ 1-2 giờ.
+5) Tạm ngưng tưới thêm trong ngày nếu giá thể còn ẩm.
+
+Áp dụng cho lan ý và hoa nhài nhà mình thì hiệu quả khá rõ:
+- Giảm hẳn tình trạng vàng lá sau mưa.
+- Ít xuất hiện đốm nấm ở lá non.
+- Cây phục hồi nhanh hơn vào hôm sau.
+
+Mẹo nhỏ: Với chậu đặt sát tường, nên kê cao thêm 1-2cm bằng chân đế để thoát nước đáy tốt hơn trong suốt mùa mưa.`,
     image: '/images/community/cuu_cay.png',
     likes: 142,
     comments: 27,

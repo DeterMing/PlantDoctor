@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
-import { Camera, Plus } from 'lucide-react';
+import { Camera, Plus, X } from 'lucide-react';
 import { Post } from '../types';
 
 interface DashboardProps {
@@ -8,6 +9,8 @@ interface DashboardProps {
 }
 
 export function Dashboard({ posts, onUploadClick }: DashboardProps) {
+  const [selectedPost, setSelectedPost] = useState<Post | null>(null);
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 py-8 animate-fade-in">
       {/* Left rail - Profile & Stats */}
@@ -38,14 +41,6 @@ export function Dashboard({ posts, onUploadClick }: DashboardProps) {
       {/* Main content - AI Banner & Feed */}
       <main className="lg:col-span-6 space-y-8">
         <section className="relative overflow-hidden rounded-3xl botanical-gradient p-10 text-on-primary">
-          <div className="absolute inset-0 opacity-15">
-            <img
-              src="/images/weather/hero-hanoi.jpg"
-              alt="Nền chìm trang trí"
-              className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
-            />
-          </div>
           <div className="relative z-10 max-w-sm md:max-w-md">
             <h1 className="font-headline text-3xl md:text-4xl font-bold mb-4 leading-tight">Chẩn đoán triệu chứng trong tích tắc với AI thực vật.</h1>
             <p className="text-on-primary/80 mb-8 font-medium">Phân tích vân lá để phát hiện thiếu hụt dinh dưỡng và sâu bệnh ngay lập tức.</p>
@@ -63,9 +58,13 @@ export function Dashboard({ posts, onUploadClick }: DashboardProps) {
         </section>
 
         <section className="space-y-6">
-          <h3 className="font-headline text-2xl font-bold text-primary">Lưu trữ cộng đồng</h3>
+          <h3 className="font-headline text-2xl font-bold text-primary">Thông tin cộng đồng</h3>
           {posts.map((post) => (
-            <article key={post.id} className="bg-surface-container-lowest rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all">
+            <article
+              key={post.id}
+              onClick={() => setSelectedPost(post)}
+              className="bg-surface-container-lowest rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all cursor-pointer"
+            >
               <img src={post.image} className="w-full h-64 object-cover" referrerPolicy="no-referrer" />
               <div className="p-8">
                 <div className="flex items-center gap-3 mb-4">
@@ -113,6 +112,48 @@ export function Dashboard({ posts, onUploadClick }: DashboardProps) {
             </div>
          </div>
       </aside>
+
+      {selectedPost && (
+        <div className="fixed inset-0 z-[80]">
+          <div
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={() => setSelectedPost(null)}
+          />
+          <div className="absolute inset-0 overflow-y-auto p-4 md:p-8">
+            <div className="max-w-3xl mx-auto bg-surface-container-lowest rounded-3xl overflow-hidden shadow-2xl border border-outline-variant/20">
+              <div className="relative">
+                <img
+                  src={selectedPost.image}
+                  className="w-full h-72 md:h-96 object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <button
+                  type="button"
+                  onClick={() => setSelectedPost(null)}
+                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition-colors"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+              <div className="p-6 md:p-8 space-y-5">
+                <div className="flex items-center gap-3">
+                  <img src={selectedPost.author.avatar} className="w-10 h-10 rounded-full object-cover" referrerPolicy="no-referrer" />
+                  <div>
+                    <p className="font-bold text-primary leading-none">{selectedPost.author.name}</p>
+                    <p className="text-xs text-outline mt-1">{selectedPost.author.role} • {selectedPost.timestamp}</p>
+                  </div>
+                </div>
+                <h4 className="font-headline text-3xl font-bold text-primary leading-tight">{selectedPost.title}</h4>
+                <p className="text-on-surface-variant leading-relaxed whitespace-pre-line">{selectedPost.content}</p>
+                <div className="pt-2 border-t border-outline-variant/10 flex gap-6 text-outline text-sm">
+                  <span>❤️ {selectedPost.likes}</span>
+                  <span>💬 {selectedPost.comments}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
