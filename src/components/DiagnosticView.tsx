@@ -90,15 +90,15 @@ export function DiagnosticView({ onBack }: DiagnosticViewProps) {
   };
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-6 animate-fade-in pb-32 font-body">
-      <div className="mb-12 text-center">
-        <h1 className="font-headline text-4xl md:text-5xl text-primary font-bold mb-4">Phòng Khám Thực Vật AI</h1>
-        <p className="text-on-surface-variant text-xl leading-relaxed max-w-2xl mx-auto">Chúng tôi giúp bạn thấu hiểu ngôn ngữ của cây cối qua từng chiếc lá.</p>
+    <div className="max-w-4xl mx-auto py-6 md:py-12 px-4 md:px-6 animate-fade-in pb-32 font-body">
+      <div className="mb-8 md:mb-12 text-center">
+        <h1 className="font-headline text-3xl md:text-5xl text-primary font-bold mb-3">Phòng Khám Thực Vật AI</h1>
+        <p className="text-on-surface-variant text-base md:text-xl leading-relaxed max-w-2xl mx-auto px-4">Chúng tôi giúp bạn thấu hiểu ngôn ngữ của cây cối qua từng chiếc lá.</p>
       </div>
 
-      <div className="space-y-10">
+      <div className="space-y-6 md:space-y-10">
         {!result ? (
-          <div className="space-y-8">
+          <div className="space-y-6 md:space-y-8">
             <div className="relative group">
               <input 
                 type="file" 
@@ -106,23 +106,23 @@ export function DiagnosticView({ onBack }: DiagnosticViewProps) {
                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" 
                 onChange={handleFileChange}
               />
-              <div className={`w-full min-h-[350px] aspect-video rounded-[40px] border-4 border-dashed border-outline-variant bg-surface-container-low flex flex-col items-center justify-center transition-all group-hover:bg-surface-container-high ${image ? 'border-primary border-solid' : ''}`}>
+              <div className={`w-full min-h-[280px] md:min-h-[350px] aspect-video rounded-[32px] md:rounded-[40px] border-4 border-dashed border-outline-variant bg-surface-container-low flex flex-col items-center justify-center transition-all group-hover:bg-surface-container-high ${image ? 'border-primary border-solid' : ''}`}>
                 {image ? (
-                  <img src={image} className="w-full h-full object-cover rounded-[36px]" referrerPolicy="no-referrer" />
+                  <img src={image} className="w-full h-full object-cover rounded-[28px] md:rounded-[36px]" referrerPolicy="no-referrer" />
                 ) : (
-                  <div className="text-center p-12">
-                    <div className="w-24 h-24 bg-primary-container text-on-primary rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl">
-                      <Camera className="h-10 w-10" />
+                  <div className="text-center p-6 md:p-12">
+                    <div className="w-16 h-16 md:w-24 md:h-24 bg-primary-container text-on-primary rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl">
+                      <Camera className="h-8 w-8 md:h-10 md:w-10" />
                     </div>
-                    <h3 className="font-headline text-3xl text-primary mb-3 font-bold">Chụp ảnh lá cây</h3>
-                    <p className="text-on-surface-variant text-lg font-medium italic">Bấm vào đây để chọn ảnh từ điện thoại của bạn</p>
+                    <h3 className="font-headline text-2xl md:text-3xl text-primary mb-2 font-bold">Chụp ảnh lá cây</h3>
+                    <p className="text-on-surface-variant text-sm md:text-lg font-medium italic">Bấm vào đây để chọn ảnh</p>
                   </div>
                 )}
               </div>
             </div>
 
-            <div className="bg-surface-container-low p-8 rounded-[32px] space-y-4 shadow-sm">
-              <label className="text-sm font-bold uppercase tracking-[0.2em] text-secondary flex items-center gap-2">
+            <div className="bg-surface-container-low p-6 md:p-8 rounded-[24px] md:rounded-[32px] space-y-4 shadow-sm">
+              <label className="text-xs font-bold uppercase tracking-[0.2em] text-secondary flex items-center gap-2">
                 <ClipboardList className="h-4 w-4" />
                 Bạn có thắc mắc gì không?
               </label>
@@ -130,41 +130,30 @@ export function DiagnosticView({ onBack }: DiagnosticViewProps) {
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
                 placeholder="Ví dụ: Tại sao lá cây bị vàng ở mép? Tôi có tưới nước quá nhiều không?"
-                className="w-full bg-white border-2 border-outline-variant/30 rounded-2xl p-6 text-lg focus:ring-4 focus:ring-primary/10 transition-all min-h-[140px] font-medium"
+                className="w-full bg-white border-2 border-outline-variant/30 rounded-xl md:rounded-2xl p-4 md:p-6 text-base md:text-lg focus:ring-4 focus:ring-primary/10 transition-all min-h-[120px] font-medium"
               />
             </div>
             
             {image && !loading && (
               <motion.button
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={handleStartDiagnosis}
-                className="w-full botanical-gradient text-on-primary py-6 rounded-3xl font-bold text-xl flex items-center justify-center gap-3 shadow-2xl hover:opacity-95 active:scale-[0.98] transition-all"
+                className="w-full botanical-gradient text-on-primary py-5 md:py-6 rounded-2xl md:rounded-3xl font-bold text-lg md:text-xl flex items-center justify-center gap-3 shadow-2xl hover:opacity-95 transition-all"
               >
-                <Send className="h-6 w-6" />
-                Bấm để xem phân tích ngay
+                <Send className="h-5 w-5 md:h-6 md:w-6" />
+                Gửi hình ảnh chẩn đoán
               </motion.button>
             )}
 
             {loading && (
-              <div className="flex flex-col items-center gap-6 py-12">
+              <div className="flex flex-col items-center gap-4 md:gap-6 py-8 md:py-12">
                 <div className="relative">
-                  <Loader2 className="h-16 w-16 text-primary animate-spin" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-4 h-4 bg-secondary rounded-full animate-pulse"></div>
-                  </div>
+                  <Loader2 className="h-12 w-12 md:h-16 md:w-16 text-primary animate-spin" />
                 </div>
                 <div className="text-center">
-                  <p className="text-2xl font-headline text-primary font-bold animate-pulse">Hệ thống đang hội chẩn...</p>
-                  <p className="text-on-surface-variant font-medium mt-2 italic">Quá trình này có thể mất 5-10 giây</p>
+                  <p className="text-xl md:text-2xl font-headline text-primary font-bold animate-pulse">Hệ thống đang hội chẩn...</p>
+                  <p className="text-xs md:text-on-surface-variant font-medium mt-1 italic">Quá trình này có thể mất vài giây</p>
                 </div>
-              </div>
-            )}
-
-            {error && (
-              <div className="bg-error-container text-on-error-container p-8 rounded-3xl flex items-center gap-5 border-2 border-error/20">
-                <AlertCircle className="h-8 w-8 shrink-0" />
-                <p className="text-lg font-bold">{error}</p>
               </div>
             )}
           </div>
@@ -172,38 +161,38 @@ export function DiagnosticView({ onBack }: DiagnosticViewProps) {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="space-y-12"
+            className="space-y-8 md:space-y-12"
           >
             {/* Header Result */}
-            <div className="bg-surface-container-lowest rounded-[40px] p-10 shadow-2xl border border-outline-variant/10">
-               <div className="flex flex-col md:flex-row gap-12">
-                  <div className="md:w-2/5 shrink-0">
-                    <div className="rounded-[32px] overflow-hidden aspect-square shadow-xl border-8 border-surface-container-low ring-1 ring-outline-variant/20">
+            <div className="bg-surface-container-lowest rounded-[32px] md:rounded-[40px] p-6 md:p-10 shadow-2xl border border-outline-variant/10">
+               <div className="flex flex-col md:flex-row gap-8 md:gap-12">
+                  <div className="w-full md:w-2/5 shrink-0">
+                    <div className="rounded-3xl overflow-hidden aspect-square shadow-xl border-4 md:border-8 border-surface-container-low ring-1 ring-outline-variant/20">
                       <img src={image!} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                     </div>
                   </div>
                   
-                  <div className="flex-1 space-y-8">
+                  <div className="flex-1 space-y-6 md:space-y-8">
                     <div>
-                      <div className="flex gap-3 mb-4">
-                        <span className="bg-error-container text-on-error-container px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-2">
-                          <AlertTriangle className="h-4 w-4" />
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        <span className="bg-error-container text-on-error-container px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
+                          <AlertTriangle className="h-3 w-3" />
                           {result.healthStatus}
                         </span>
-                        <span className="bg-secondary-container text-on-secondary-container px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
+                        <span className="bg-secondary-container text-on-secondary-container px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest">
                           Hồi phục: {result.recoveryEst}
                         </span>
                       </div>
-                      <h2 className="font-headline text-4xl text-primary font-bold mb-2 leading-tight">{result.diagnosis}</h2>
-                      <p className="text-lg italic text-secondary font-headline leading-relaxed">{result.scientificName}</p>
+                      <h2 className="font-headline text-2xl md:text-4xl text-primary font-bold mb-1 leading-tight">{result.diagnosis}</h2>
+                      <p className="text-sm md:text-lg italic text-secondary font-headline leading-relaxed">{result.scientificName}</p>
                     </div>
 
-                    <div className="bg-surface-container-low p-8 rounded-3xl border-l-8 border-primary space-y-4">
-                       <h4 className="font-headline text-2xl font-bold text-primary flex items-center gap-3">
-                         <Info className="h-6 w-6 text-secondary" />
+                    <div className="bg-surface-container-low p-6 md:p-8 rounded-3xl border-l-[6px] md:border-l-8 border-primary space-y-3">
+                       <h4 className="font-headline text-xl md:text-2xl font-bold text-primary flex items-center gap-2 text-wrap">
+                         <Info className="h-5 w-5 text-secondary" />
                          Tổng quan tình trạng
                        </h4>
-                       <p className="text-lg text-on-surface-variant leading-relaxed font-medium">
+                       <p className="text-base md:text-lg text-on-surface-variant leading-relaxed font-medium">
                          {result.summary}
                        </p>
                     </div>
@@ -212,30 +201,27 @@ export function DiagnosticView({ onBack }: DiagnosticViewProps) {
             </div>
 
             {/* Detailed Cause Cards */}
-            <section className="space-y-6">
-               <h3 className="font-headline text-3xl font-bold text-primary flex items-center gap-3 ml-2">
-                 <AlertTriangle className="h-8 w-8 text-amber-600" />
+            <section className="space-y-4 md:space-y-6">
+               <h3 className="font-headline text-2xl md:text-3xl font-bold text-primary flex items-center gap-3 ml-2">
+                 <AlertTriangle className="h-6 w-6 md:h-8 md:w-8 text-amber-600" />
                  Nguyên nhân chi tiết
                </h3>
-               <div className="grid grid-cols-1 gap-6">
+               <div className="grid grid-cols-1 gap-4 md:gap-6">
                  {result.details.causes.map((cause: any, idx: number) => (
                    <motion.div 
                      key={idx}
-                     initial={{ opacity: 0, x: -20 }}
-                     animate={{ opacity: 1, x: 0 }}
-                     transition={{ delay: idx * 0.1 }}
-                     className="bg-white p-10 rounded-[32px] shadow-lg border border-outline-variant/20 space-y-6"
+                     className="bg-white p-6 md:p-10 rounded-[24px] md:rounded-[32px] shadow-lg border border-outline-variant/20 space-y-4 md:space-y-6"
                    >
-                     <h4 className="font-headline text-2xl font-bold text-primary pb-4 border-b border-outline-variant/10">
+                     <h4 className="font-headline text-lg md:text-2xl font-bold text-primary pb-3 border-b border-outline-variant/10">
                        {cause.title}
                      </h4>
-                     <ul className="space-y-6">
+                     <ul className="space-y-4 md:space-y-6">
                         {cause.items.map((item: string, i: number) => (
-                          <li key={i} className="flex gap-4 items-start">
-                             <div className="w-8 h-8 rounded-full bg-surface-container-low flex items-center justify-center text-primary font-bold shrink-0 mt-1">
+                          <li key={i} className="flex gap-3 md:gap-4 items-start">
+                             <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-surface-container-low flex items-center justify-center text-primary text-sm md:text-base font-bold shrink-0 mt-0.5">
                                {i + 1}
                              </div>
-                             <p className="text-xl text-on-surface-variant font-medium leading-relaxed italic">{item}</p>
+                             <p className="text-base md:text-xl text-on-surface-variant font-medium leading-relaxed italic">{item}</p>
                           </li>
                         ))}
                      </ul>
@@ -245,20 +231,20 @@ export function DiagnosticView({ onBack }: DiagnosticViewProps) {
             </section>
 
             {/* Action Steps */}
-            <section className="bg-primary-container text-on-primary-container p-12 rounded-[48px] shadow-2xl relative overflow-hidden">
-               <div className="absolute top-0 right-0 p-10 opacity-10">
+            <section className="bg-primary-container text-on-primary-container p-8 md:p-12 rounded-[32px] md:rounded-[48px] shadow-2xl relative overflow-hidden">
+               <div className="absolute top-0 right-0 p-10 opacity-10 hidden sm:block">
                  <Lightbulb className="w-48 h-48" />
                </div>
-               <div className="relative z-10 space-y-10">
-                  <h3 className="font-headline text-4xl font-bold mb-2 flex items-center gap-4">
-                    <CheckCircle className="h-10 w-10 text-emerald-400" />
-                    Cần thực hiện ngay (Phác đồ xử lý)
+               <div className="relative z-10 space-y-6 md:space-y-10">
+                  <h3 className="font-headline text-2xl md:text-4xl font-bold mb-2 flex items-center gap-3">
+                    <CheckCircle className="h-8 w-8 md:h-10 md:w-10 text-emerald-400" />
+                    Cần thực hiện ngay
                   </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-1 gap-8">
+                  <div className="grid grid-cols-1 gap-4 md:gap-8">
                      {result.details.actions.map((action: string, idx: number) => (
-                       <div key={idx} className="flex gap-6 items-start bg-white/10 p-8 rounded-3xl backdrop-blur-sm border border-white/10">
-                          <CheckCircle className="h-8 w-8 text-emerald-400 shrink-0 mt-1" />
-                          <p className="text-2xl font-bold leading-tight">{action}</p>
+                       <div key={idx} className="flex gap-4 md:gap-6 items-start bg-white/10 p-5 md:p-8 rounded-2xl md:rounded-3xl backdrop-blur-sm border border-white/10">
+                          <CheckCircle className="h-6 w-6 md:h-8 md:w-8 text-emerald-400 shrink-0 mt-0.5" />
+                          <p className="text-lg md:text-2xl font-bold leading-tight">{action}</p>
                        </div>
                      ))}
                   </div>
@@ -266,19 +252,19 @@ export function DiagnosticView({ onBack }: DiagnosticViewProps) {
             </section>
 
             {/* Control Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 pt-12 pb-12">
+            <div className="flex flex-col sm:flex-row gap-4 pt-4 md:pt-12 pb-12">
               <button 
                 onClick={() => setShowSaveModal(true)}
-                className="flex-1 botanical-gradient text-on-primary py-6 rounded-2xl font-bold text-xl flex items-center justify-center gap-3 shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all"
+                className="flex-1 botanical-gradient text-on-primary py-5 md:py-6 rounded-2xl font-bold text-lg md:text-xl flex items-center justify-center gap-3 shadow-2xl active:scale-[0.98] transition-all"
               >
-                <Save className="h-6 w-6" />
-                Lưu vào hồ sơ cây trồng
+                <Save className="h-5 w-5" />
+                Lưu vào hồ sơ
               </button>
               <button 
                 onClick={() => {setResult(null); setImage(null); setQuestion("");}}
-                className="flex-1 bg-surface-container-high text-on-surface py-6 rounded-2xl font-bold text-xl flex items-center justify-center gap-3 shadow-lg active:scale-[0.98] transition-all"
+                className="flex-1 bg-surface-container-high text-on-surface py-5 md:py-6 rounded-2xl font-bold text-lg md:text-xl flex items-center justify-center gap-3 shadow-lg active:scale-[0.98] transition-all"
               >
-                Bắt đầu phân tích mới
+                Phân tích lại
               </button>
             </div>
           </motion.div>
@@ -297,41 +283,32 @@ export function DiagnosticView({ onBack }: DiagnosticViewProps) {
               onClick={() => setShowSaveModal(false)}
             />
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              initial={{ opacity: 0, scale: 0.9, y: 100 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="fixed inset-x-6 top-1/2 -translate-y-1/2 z-[101] max-w-lg mx-auto bg-white rounded-[48px] p-12 shadow-2xl space-y-10"
+              exit={{ opacity: 0, scale: 0.9, y: 100 }}
+              className="fixed inset-x-4 bottom-4 md:inset-x-6 md:top-1/2 md:-translate-y-1/2 z-[101] max-w-lg mx-auto bg-white rounded-[32px] md:rounded-[48px] p-8 md:p-12 shadow-2xl space-y-8 md:space-y-10"
             >
-              <div className="text-center space-y-4">
-                <div className="w-20 h-20 bg-secondary-container text-primary rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Save className="h-10 w-10" />
-                </div>
-                <h3 className="font-headline text-4xl font-bold text-primary">Thông tin hồ sơ</h3>
-                <p className="text-on-surface-variant font-medium text-lg">Bổ sung thêm thông tin để tiện theo dõi quá trình phục hồi.</p>
+              <div className="text-center space-y-3">
+                <h3 className="font-headline text-3xl md:text-4xl font-bold text-primary">Thông tin hồ sơ</h3>
+                <p className="text-on-surface-variant font-medium text-base md:text-lg italic">Bổ sung thêm thông tin theo dõi.</p>
               </div>
 
-              <div className="space-y-8">
-                <div className="space-y-4">
-                  <label className="text-sm font-bold uppercase tracking-widest text-outline flex items-center gap-2">
-                    <User className="h-4 w-4" />
-                    Người chăm sóc
-                  </label>
+              <div className="space-y-6 md:space-y-8">
+                <div className="space-y-3">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-outline">Người chăm sóc</label>
                   <input 
                     type="text" 
                     defaultValue="Hi Brother"
-                    className="w-full bg-surface-container-low border-2 border-outline-variant/30 rounded-2xl p-5 text-lg font-bold text-primary focus:ring-4 focus:ring-primary/10 transition-all"
+                    className="w-full bg-surface-container-low border-2 border-outline-variant/30 rounded-xl p-4 text-base font-bold text-primary"
                   />
                 </div>
 
-                <div className="space-y-4">
-                  <label className="text-sm font-bold uppercase tracking-widest text-outline flex items-center gap-2">
-                    <MapPin className="h-4 w-4" />
-                    Vị trí cây đặt
-                  </label>
+                <div className="space-y-3">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-outline">Vị trí cây</label>
                   <select 
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
-                    className="w-full bg-surface-container-low border-2 border-outline-variant/30 rounded-2xl p-5 text-lg font-bold text-primary focus:ring-4 focus:ring-primary/10 transition-all"
+                    className="w-full bg-surface-container-low border-2 border-outline-variant/30 rounded-xl p-4 text-base font-bold text-primary"
                   >
                     <option>Ban công hướng Đông</option>
                     <option>Phòng khách</option>
@@ -340,30 +317,27 @@ export function DiagnosticView({ onBack }: DiagnosticViewProps) {
                   </select>
                 </div>
 
-                <div className="space-y-4">
-                  <label className="text-sm font-bold uppercase tracking-widest text-outline flex items-center gap-2 font-headline">
-                    <ClipboardList className="h-4 w-4" />
-                    Ghi chú thêm (Tình trạng hôm nay)
-                  </label>
+                <div className="space-y-3">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-outline">Ghi chú hôm nay</label>
                   <textarea 
                     value={saveNotes}
                     onChange={(e) => setSaveNotes(e.target.value)}
-                    placeholder="Ví dụ: Đã cắt bỏ 3 lá bị héo nặng nhất, bón lót k-sunfat..."
-                    className="w-full bg-surface-container-low border-2 border-outline-variant/30 rounded-2xl p-5 text-lg font-medium focus:ring-4 focus:ring-primary/10 transition-all min-h-[120px]"
+                    placeholder="Ví dụ: Đã cắt bỏ 3 lá bị héo..."
+                    className="w-full bg-surface-container-low border-2 border-outline-variant/30 rounded-xl p-4 text-base font-medium min-h-[100px]"
                   />
                 </div>
               </div>
 
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-3">
                 <button 
                   onClick={handleSaveReport}
-                  className="w-full botanical-gradient text-on-primary py-6 rounded-2xl font-bold text-xl shadow-xl hover:opacity-90 transition-all"
+                  className="w-full botanical-gradient text-on-primary py-5 rounded-2xl font-bold text-lg shadow-xl"
                 >
-                  Xác nhận lưu báo cáo
+                  Xác nhận lưu
                 </button>
                 <button 
                   onClick={() => setShowSaveModal(false)}
-                  className="w-full text-outline font-bold py-2 hover:text-primary transition-colors uppercase tracking-widest text-sm"
+                  className="w-full text-outline font-bold py-2 text-sm uppercase tracking-widest"
                 >
                   Hủy bỏ
                 </button>

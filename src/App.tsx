@@ -8,6 +8,8 @@ import { MyPlantsView } from './components/MyPlantsView';
 import { SettingsView } from './components/SettingsView';
 import { WeatherView } from './components/WeatherView';
 import { Plant, Product, Post, WeatherData, Notification } from './types';
+import { AnimatePresence, motion } from 'motion/react';
+import { Camera } from 'lucide-react';
 
 const MOCK_PLANTS: Plant[] = [
   {
@@ -206,16 +208,36 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen selection-green bg-surface">
+    <div className="min-h-screen selection-green bg-surface overflow-x-hidden">
       <Header 
         activeTab={activeTab} 
         setActiveTab={setActiveTab} 
         notifications={MOCK_NOTIFICATIONS}
       />
       
-      <main className="mx-auto max-w-7xl px-6 pb-24 md:pb-12">
-        {renderContent()}
+      <main className="mx-auto max-w-7xl px-4 md:px-6 pb-32 md:pb-12">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.2 }}
+          >
+            {renderContent()}
+          </motion.div>
+        </AnimatePresence>
       </main>
+
+      {/* Floating Action Button for Mobile */}
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={() => setActiveTab('diagnostic')}
+        className="md:hidden fixed right-6 bottom-24 z-50 botanical-gradient text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center border-2 border-white/20 active:opacity-90"
+      >
+        <Camera className="h-8 w-8" />
+      </motion.button>
 
       <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
       
