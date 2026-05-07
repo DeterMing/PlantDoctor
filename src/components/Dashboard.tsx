@@ -89,7 +89,7 @@ export function Dashboard({ posts, onUploadClick }: DashboardProps) {
                   <div>
                      <p className="text-xs font-bold text-primary">NỔI BẬT</p>
                      <p className="text-sm font-bold">Phân nở tảo biển</p>
-                     <p className="text-xs text-outline">18.500đ</p>
+                     <p className="text-xs text-outline">185.000đ</p>
                   </div>
                </div>
                <div className="flex gap-4">
@@ -99,7 +99,7 @@ export function Dashboard({ posts, onUploadClick }: DashboardProps) {
                   <div>
                      <p className="text-xs font-bold text-primary">ƯU TIÊN HÈ</p>
                      <p className="text-sm font-bold">Đất trồng kiểng lá</p>
-                     <p className="text-xs text-outline">12.990đ</p>
+                     <p className="text-xs text-outline">129.000đ</p>
                   </div>
                </div>
             </div>

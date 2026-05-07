@@ -11,6 +11,129 @@ interface PlantDetailViewProps {
 export function PlantDetailView({ plant, onClose }: PlantDetailViewProps) {
   const [selectedReport, setSelectedReport] = useState<DiagnosticReport | null>(null);
 
+  const careHistoryByPlant: Record<string, { date: string; title: string; note: string; done: boolean }[]> = {
+    '1': [
+      {
+        date: '03 Tháng 05, 2026',
+        title: 'Tỉa cành tăm và tạo tán',
+        note: 'Cắt nhẹ các nhánh mọc dày để tập trung dinh dưỡng nuôi hoa.',
+        done: true
+      },
+      {
+        date: '20 Tháng 04, 2026',
+        title: 'Bón thúc trước đợt nắng',
+        note: 'Bổ sung phân giàu kali liều nhẹ để hỗ trợ ra hoa.',
+        done: false
+      }
+    ],
+    '2': [
+      {
+        date: '06 Tháng 05, 2026',
+        title: 'Kiểm tra độ khô giá thể',
+        note: 'Đất khô nhanh do điều hòa, đã tưới bù 1 lần.',
+        done: true
+      },
+      {
+        date: '27 Tháng 04, 2026',
+        title: 'Lau bụi bề mặt lá',
+        note: 'Lau từng lá bằng khăn ẩm để cây quang hợp tốt hơn.',
+        done: false
+      }
+    ],
+    '3': [
+      {
+        date: '05 Tháng 05, 2026',
+        title: 'Cắt lá già cháy mép',
+        note: 'Loại bỏ 2 lá già để cây tập trung nuôi lá non.',
+        done: true
+      },
+      {
+        date: '25 Tháng 04, 2026',
+        title: 'Bổ sung ẩm khu vực đặt chậu',
+        note: 'Thêm khay sỏi ẩm để giảm tình trạng khô đầu lá.',
+        done: false
+      }
+    ],
+    '4': [
+      {
+        date: '07 Tháng 05, 2026',
+        title: 'Xử lý rệp ở ngọn non',
+        note: 'Dùng khăn ẩm lau rệp và theo dõi lại sau 3 ngày.',
+        done: true
+      },
+      {
+        date: '28 Tháng 04, 2026',
+        title: 'Tỉa cành rậm sau mưa',
+        note: 'Tạo độ thoáng cho tán để hạn chế nấm bệnh mùa ẩm.',
+        done: false
+      }
+    ]
+  };
+
+  const remindersByPlant: Record<string, { icon: 'water' | 'feed'; title: string; detail: string; due: string; overdue?: boolean }[]> = {
+    '1': [
+      {
+        icon: 'feed',
+        title: 'Bón phân kích hoa',
+        detail: '2 tuần/lần • liều nhẹ',
+        due: 'Còn 2 ngày'
+      },
+      {
+        icon: 'water',
+        title: 'Tưới sáng sớm',
+        detail: 'Mỗi 2 ngày • 500ml',
+        due: 'Sáng mai'
+      }
+    ],
+    '2': [
+      {
+        icon: 'water',
+        title: 'Tưới đẫm theo chu kỳ',
+        detail: '7-10 ngày/lần • 350ml',
+        due: 'Hôm nay',
+        overdue: true
+      },
+      {
+        icon: 'feed',
+        title: 'Bổ sung phân hữu cơ',
+        detail: 'Hàng tháng • liều thấp',
+        due: 'Còn 8 ngày'
+      }
+    ],
+    '3': [
+      {
+        icon: 'water',
+        title: 'Kiểm tra ẩm đất',
+        detail: '2-3 ngày/lần • tưới khi mặt đất se khô',
+        due: 'Tối nay'
+      },
+      {
+        icon: 'feed',
+        title: 'Bón phân lá loãng',
+        detail: '3 tuần/lần • pha loãng',
+        due: 'Còn 5 ngày'
+      }
+    ],
+    '4': [
+      {
+        icon: 'water',
+        title: 'Tưới giữ ẩm gốc',
+        detail: 'Mỗi ngày • 300ml',
+        due: 'Chiều nay',
+        overdue: true
+      },
+      {
+        icon: 'feed',
+        title: 'Phun phòng sâu sinh học',
+        detail: '7 ngày/lần • buổi sáng',
+        due: 'Còn 3 ngày'
+      }
+    ]
+  };
+
+  const careHistory = careHistoryByPlant[plant.id] || careHistoryByPlant['1'];
+  const reminders = remindersByPlant[plant.id] || remindersByPlant['1'];
+
   // Sample data for reports if not provided
   const reports: DiagnosticReport[] = plant.reports || [
     {
@@ -168,28 +291,16 @@ export function PlantDetailView({ plant, onClose }: PlantDetailViewProps) {
               Lịch sử chăm sóc
             </h4>
             <div className="space-y-0 relative before:absolute before:left-6 before:top-0 before:bottom-0 before:w-1 before:bg-surface-container">
-              <div className="relative pl-16 pb-12 group">
-                <div className="absolute left-[19px] top-1.5 w-4 h-4 rounded-full bg-secondary ring-8 ring-white shadow-lg"></div>
-                <div className="bg-surface-container-low p-8 rounded-[32px] space-y-4 border border-outline-variant/10 shadow-sm">
-                  <span className="text-xs uppercase font-bold text-outline tracking-wider block">12 Tháng 10, 2023</span>
-                  <p className="text-lg font-bold text-primary leading-tight">Cắt tỉa bảo dưỡng và bón kích rễ</p>
-                  <p className="text-on-surface-variant font-medium text-sm leading-relaxed italic">
-                    Loại bỏ các cành héo, làm sạch bụi bề mặt lá để tăng khả năng quang hợp cho mùa đông.
-                  </p>
-                  <div className="flex gap-4">
-                    <img src="/images/plants/activity-1.jpg" className="w-24 h-24 rounded-2xl object-cover shadow-md" referrerPolicy="no-referrer" />
-                    <img src="/images/plants/activity-2.jpg" className="w-24 h-24 rounded-2xl object-cover shadow-md" referrerPolicy="no-referrer" />
+              {careHistory.map((entry, idx) => (
+                <div key={entry.date + entry.title} className={`relative pl-16 group ${idx < careHistory.length - 1 ? 'pb-12' : ''}`}>
+                  <div className={`absolute left-[19px] top-1.5 w-4 h-4 rounded-full ring-8 ring-white shadow-lg ${entry.done ? 'bg-secondary' : 'bg-outline'}`}></div>
+                  <div className="bg-surface-container-low p-8 rounded-[32px] border border-outline-variant/10 shadow-sm">
+                    <span className="text-xs uppercase font-bold text-outline tracking-wider block">{entry.date}</span>
+                    <p className="text-lg font-bold text-primary leading-tight">{entry.title}</p>
+                    <p className="text-on-surface-variant font-medium text-sm leading-relaxed italic">{entry.note}</p>
                   </div>
                 </div>
-              </div>
-              <div className="relative pl-16 group">
-                <div className="absolute left-[19px] top-1.5 w-4 h-4 rounded-full bg-outline ring-8 ring-white shadow-lg"></div>
-                <div className="bg-surface-container-low p-8 rounded-[32px] border border-outline-variant/10">
-                  <span className="text-xs uppercase font-bold text-outline tracking-wider block">05 Tháng 08, 2023</span>
-                  <p className="text-lg font-bold text-primary leading-tight">Thay chậu chuyên dụng</p>
-                  <p className="text-on-surface-variant font-medium text-sm leading-relaxed italic">Chuyển sang chậu gốm thủ công size 25cm. Đất trộn theo công thức Aeroid Mix.</p>
-                </div>
-              </div>
+              ))}
             </div>
           </section>
 
@@ -200,33 +311,27 @@ export function PlantDetailView({ plant, onClose }: PlantDetailViewProps) {
               Lịch nhắc nhở sắp tới
             </h4>
             <div className="space-y-4">
-              <div className="flex items-center justify-between p-8 bg-surface-container-low rounded-[32px] border border-outline-variant/10 shadow-sm">
-                <div className="flex items-center gap-6">
-                  <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center text-secondary shadow-lg">
-                    <Droplets className="h-8 w-8" />
+              {reminders.map((item) => (
+                <div key={item.title} className="flex items-center justify-between p-8 bg-surface-container-low rounded-[32px] border border-outline-variant/10 shadow-sm">
+                  <div className="flex items-center gap-6">
+                    <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center text-secondary shadow-lg">
+                      {item.icon === 'water' ? <Droplets className="h-8 w-8" /> : <Clock className="h-8 w-8" />}
+                    </div>
+                    <div className="space-y-1">
+                      <span className="block text-xl font-bold text-primary italic">{item.title}</span>
+                      <span className="text-sm text-on-surface-variant font-medium uppercase tracking-widest">{item.detail}</span>
+                    </div>
                   </div>
-                  <div className="space-y-1">
-                    <span className="block text-xl font-bold text-primary italic">Tưới nước</span>
-                    <span className="text-sm text-on-surface-variant font-medium uppercase tracking-widest">3 ngày một lần • 250ml</span>
-                  </div>
+                  {item.overdue ? (
+                    <div className="flex flex-col items-end gap-1">
+                      <AlertTriangle className="h-5 w-5 text-error" />
+                      <span className="text-xs font-bold text-error uppercase tracking-widest">{item.due}</span>
+                    </div>
+                  ) : (
+                    <span className="text-xs font-bold text-outline uppercase tracking-widest">{item.due}</span>
+                  )}
                 </div>
-                <div className="flex flex-col items-end gap-1">
-                   <AlertTriangle className="h-5 w-5 text-error" />
-                   <span className="text-xs font-bold text-error uppercase tracking-widest">Đã quá hạn</span>
-                </div>
-              </div>
-              <div className="flex items-center justify-between p-8 bg-surface-container-low rounded-[32px] border border-outline-variant/10 shadow-sm">
-                <div className="flex items-center gap-6">
-                  <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center text-secondary shadow-lg">
-                    <Clock className="h-8 w-8" />
-                  </div>
-                  <div className="space-y-1">
-                    <span className="block text-xl font-bold text-primary italic">Bón phân định kỳ</span>
-                    <span className="text-sm text-on-surface-variant font-medium uppercase tracking-widest">Hàng tháng • NPK cân bằng</span>
-                  </div>
-                </div>
-                <span className="text-xs font-bold text-outline uppercase tracking-widest">Còn 12 ngày</span>
-              </div>
+              ))}
             </div>
           </section>
         </div>
