@@ -14,7 +14,7 @@ export function Dashboard({ posts, onUploadClick }: DashboardProps) {
       <aside className="lg:col-span-3 space-y-8">
         <div className="bg-surface-container-lowest p-6 rounded-3xl shadow-sm flex flex-row lg:flex-col items-center gap-6 lg:gap-0">
           <img 
-            src="/images/dashboard/gardener-profile.jpg" 
+            src="/images/dashboard/ava.jpg" 
             className="w-20 h-20 lg:w-24 lg:h-24 rounded-full mb-0 lg:mb-4 object-cover border-4 border-surface-container"
             referrerPolicy="no-referrer"
           />
@@ -23,7 +23,7 @@ export function Dashboard({ posts, onUploadClick }: DashboardProps) {
             <p className="text-[10px] text-outline uppercase tracking-widest mb-4 lg:mb-6">Chuyên gia làm vườn</p>
             <div className="grid grid-cols-2 gap-3 w-full">
               <div className="bg-surface-container-low p-3 lg:p-4 rounded-2xl text-center">
-                <span className="block text-xl lg:text-2xl font-bold text-primary">12</span>
+                <span className="block text-xl lg:text-2xl font-bold text-primary">4</span>
                 <span className="text-[9px] lg:text-[10px] uppercase font-bold text-outline tracking-tighter">Cây trồng</span>
               </div>
               <div className="bg-surface-container-low p-3 lg:p-4 rounded-2xl text-center">
@@ -38,6 +38,14 @@ export function Dashboard({ posts, onUploadClick }: DashboardProps) {
       {/* Main content - AI Banner & Feed */}
       <main className="lg:col-span-6 space-y-8">
         <section className="relative overflow-hidden rounded-3xl botanical-gradient p-10 text-on-primary">
+          <div className="absolute inset-0 opacity-15">
+            <img
+              src="/images/weather/hero-hanoi.jpg"
+              alt="Nền chìm trang trí"
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </div>
           <div className="relative z-10 max-w-sm md:max-w-md">
             <h1 className="font-headline text-3xl md:text-4xl font-bold mb-4 leading-tight">Chẩn đoán triệu chứng trong tích tắc với AI thực vật.</h1>
             <p className="text-on-primary/80 mb-8 font-medium">Phân tích vân lá để phát hiện thiếu hụt dinh dưỡng và sâu bệnh ngay lập tức.</p>

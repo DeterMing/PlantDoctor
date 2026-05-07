@@ -184,7 +184,7 @@ const MOCK_POSTS: Post[] = [
     id: '1',
     author: {
       name: 'Ngọc Anh',
-      avatar: '/images/community/elena.jpg',
+      avatar: '/images/dashboard/ava_ngoc_anh.png',
       role: 'Quản trị cộng đồng',
     },
     title: 'Mùa nắng ở TP.HCM: chăm trầu bà sao cho lá không cháy mép?',
@@ -199,7 +199,7 @@ const MOCK_POSTS: Post[] = [
     id: '2',
     author: {
       name: 'Minh Quân',
-      avatar: '/images/community/julian.jpg',
+      avatar: '/images/dashboard/ava_minh_quan.png',
       role: 'Người trồng cây ban công',
     },
     title: 'Checklist 5 phút sau mưa lớn để cứu cây chậu ở Hà Nội',
