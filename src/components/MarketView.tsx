@@ -5,9 +5,10 @@ import { useState } from 'react';
 
 interface MarketViewProps {
   products: Product[];
+  onAddToCart: (product: Product) => void;
 }
 
-export function MarketView({ products }: MarketViewProps) {
+export function MarketView({ products, onAddToCart }: MarketViewProps) {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedRegion, setSelectedRegion] = useState<string>('Tất cả');
 
@@ -27,29 +28,37 @@ export function MarketView({ products }: MarketViewProps) {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-12 py-12 animate-fade-in">
+    <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 py-6 md:py-12 animate-fade-in font-body">
       {/* Sidebar Filters */}
-      <aside className="w-full lg:w-64 shrink-0 space-y-10">
+      <aside className="w-full lg:w-64 shrink-0 space-y-8 lg:space-y-10">
         <section>
-          <h3 className="font-headline text-xl font-bold mb-6 text-primary">Danh mục</h3>
-          <div className="space-y-4">
+          <h3 className="font-headline text-lg md:text-xl font-bold mb-4 md:mb-6 text-primary">Danh mục</h3>
+          <div className="flex lg:flex-col gap-3 overflow-x-auto pb-4 lg:pb-0 scrollbar-hide -mx-4 px-4 lg:mx-0 lg:px-0">
             {categories.map((cat) => (
-              <label key={cat} className="flex items-center gap-3 cursor-pointer group">
+              <button
+                key={cat}
+                onClick={() => toggleCategory(cat)}
+                className={`whitespace-nowrap px-4 py-2 rounded-full lg:rounded-none lg:px-0 lg:py-0 border lg:border-none transition-all flex items-center gap-3 ${
+                  selectedCategories.includes(cat)
+                    ? 'bg-primary text-on-primary border-primary lg:bg-transparent lg:text-primary'
+                    : 'bg-surface-container-low text-on-surface border-transparent lg:bg-transparent lg:text-on-surface'
+                }`}
+              >
                 <input 
                   type="checkbox" 
                   checked={selectedCategories.includes(cat)}
-                  onChange={() => toggleCategory(cat)}
-                  className="rounded border-outline-variant text-primary focus:ring-primary w-5 h-5 transition-all" 
+                  readOnly
+                  className="hidden lg:block rounded border-outline-variant text-primary focus:ring-primary w-5 h-5 transition-all cursor-pointer" 
                 />
-                <span className={`group-hover:text-primary transition-colors font-medium ${selectedCategories.includes(cat) ? 'text-primary font-bold' : 'text-on-surface'}`}>
+                <span className={`font-medium text-sm md:text-base ${selectedCategories.includes(cat) ? 'lg:font-bold' : ''}`}>
                   {cat}
                 </span>
-              </label>
+              </button>
             ))}
           </div>
         </section>
 
-        <section>
+        <section className="hidden md:block">
           <h3 className="font-headline text-xl font-bold mb-6 text-primary">Khu vực ship</h3>
           <div className="grid grid-cols-2 gap-2">
             {regions.map((region) => (
@@ -68,7 +77,7 @@ export function MarketView({ products }: MarketViewProps) {
           </div>
         </section>
 
-        <section>
+        <section className="hidden md:block">
           <h3 className="font-headline text-xl font-bold mb-6 text-primary">Khoảng giá</h3>
           <input type="range" className="w-full accent-primary" />
           <div className="flex justify-between mt-2 text-xs text-outline font-bold">
@@ -77,26 +86,26 @@ export function MarketView({ products }: MarketViewProps) {
           </div>
         </section>
 
-        <div className="bg-primary-container p-8 rounded-3xl text-on-primary shadow-xl">
-           <p className="font-headline text-xl leading-snug mb-4 italic">Tham gia Collectors' Circle để nhận ưu đãi cây hiếm.</p>
-           <button className="w-full py-3 bg-white text-primary font-bold rounded-xl text-sm hover:bg-surface transition-colors">Tìm hiểu thêm</button>
+        <div className="bg-primary-container p-6 md:p-8 rounded-[32px] text-on-primary shadow-xl">
+           <p className="font-headline text-lg md:text-xl leading-snug mb-4 italic">Tham gia Collectors' Circle để nhận ưu đãi cây hiếm.</p>
+           <button className="w-full py-3 bg-white text-primary font-bold rounded-xl text-sm hover:bg-surface transition-colors shadow-sm active:scale-95 transition-all">Tìm hiểu thêm</button>
         </div>
       </aside>
 
       {/* Product Grid */}
-      <main className="flex-1 space-y-12">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+      <main className="flex-1 space-y-8 md:space-y-12">
+        <div className="flex items-center justify-between gap-4 mb-4">
           <div>
-            <h2 className="font-headline text-3xl font-bold text-primary">Mùa hè Việt Nam</h2>
-            <p className="text-sm text-outline italic">Sưu tập các loại cây chịu nhiệt và phụ kiện chăm sóc mùa nóng</p>
+            <h2 className="font-headline text-2xl md:text-3xl font-bold text-primary">Mùa hè Việt Nam</h2>
+            <p className="text-xs md:text-sm text-outline italic">Sưu tập các loại cây chịu nhiệt & chăm sóc mùa nóng</p>
           </div>
-          <button className="flex items-center gap-2 text-sm font-bold text-outline hover:text-primary transition-colors bg-surface-container-low px-4 py-2 rounded-xl">
+          <button className="md:flex hidden items-center gap-2 text-sm font-bold text-outline hover:text-primary transition-colors bg-surface-container-low px-4 py-2 rounded-xl">
             <Filter className="h-4 w-4" />
-            Sắp xếp: Phổ biến
+            Sắp xếp
           </button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
           {filteredProducts.map((product) => (
             <motion.div 
               key={product.id}
@@ -130,7 +139,10 @@ export function MarketView({ products }: MarketViewProps) {
                   </div>
                   <span className="text-[10px] text-outline font-bold">({product.reviews})</span>
                 </div>
-                <button className="w-full py-4 botanical-gradient text-on-primary rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/10 group-hover:scale-[1.02] transition-transform">
+                <button 
+                  onClick={() => onAddToCart(product)}
+                  className="w-full py-4 botanical-gradient text-on-primary rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/10 group-hover:scale-[1.02] transition-transform active:scale-95"
+                >
                   <ShoppingCart className="h-4 w-4" />
                   Thêm vào giỏ
                 </button>

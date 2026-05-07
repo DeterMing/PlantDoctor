@@ -7,7 +7,7 @@ import { MarketView } from './components/MarketView';
 import { MyPlantsView } from './components/MyPlantsView';
 import { SettingsView } from './components/SettingsView';
 import { WeatherView } from './components/WeatherView';
-import { Plant, Product, Post, WeatherData, Notification } from './types';
+import { Plant, Product, Post, WeatherData, Notification, CartItem } from './types';
 import { AnimatePresence, motion } from 'motion/react';
 import { Camera } from 'lucide-react';
 
@@ -187,6 +187,35 @@ const MOCK_NOTIFICATIONS: Notification[] = [
 
 export default function App() {
   const [activeTab, setActiveTab ] = useState('dashboard');
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  const handleAddToCart = (product: Product) => {
+    setCartItems(prev => {
+      const existing = prev.find(item => item.product.id === product.id);
+      if (existing) {
+        return prev.map(item => 
+          item.product.id === product.id 
+            ? { ...item, quantity: item.quantity + 1 } 
+            : item
+        );
+      }
+      return [...prev, { id: Math.random().toString(36).substr(2, 9), product, quantity: 1 }];
+    });
+  };
+
+  const handleRemoveFromCart = (id: string) => {
+    setCartItems(prev => prev.filter(item => item.id !== id));
+  };
+
+  const handleUpdateQuantity = (id: string, delta: number) => {
+    setCartItems(prev => prev.map(item => {
+      if (item.id === id) {
+        const newQty = Math.max(1, item.quantity + delta);
+        return { ...item, quantity: newQty };
+      }
+      return item;
+    }));
+  };
 
   const renderContent = () => {
     switch (activeTab) {
@@ -197,7 +226,7 @@ export default function App() {
       case 'weather':
         return <WeatherView weather={MOCK_WEATHER} />;
       case 'market':
-        return <MarketView products={MOCK_PRODUCTS} />;
+        return <MarketView products={MOCK_PRODUCTS} onAddToCart={handleAddToCart} />;
       case 'myplants':
         return <MyPlantsView plants={MOCK_PLANTS} />;
       case 'settings':
@@ -213,6 +242,9 @@ export default function App() {
         activeTab={activeTab} 
         setActiveTab={setActiveTab} 
         notifications={MOCK_NOTIFICATIONS}
+        cartItems={cartItems}
+        onRemoveFromCart={handleRemoveFromCart}
+        onUpdateQuantity={handleUpdateQuantity}
       />
       
       <main className="mx-auto max-w-7xl px-4 md:px-6 pb-32 md:pb-12">

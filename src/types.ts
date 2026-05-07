@@ -79,3 +79,9 @@ export interface Post {
   timestamp: string;
   tag?: string;
 }
+
+export interface CartItem {
+  id: string;
+  product: Product;
+  quantity: number;
+}
