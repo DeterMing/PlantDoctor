@@ -146,14 +146,14 @@ const MOCK_PRODUCTS: Product[] = [
   },
   {
     id: '3',
-    name: 'Sen Đá Thạch Ngọc',
+    name: 'Sen Đá Thạch Ngọc Đỏ',
     category: 'Cây cảnh',
     region: 'Nam',
-    price: 59000,
-    image: '/images/products/succulent-2.jpg',
+    price: 69000,
+    image: '/images/products/thach_ngoc_do.png',
     rating: 5.0,
     reviews: 204,
-    description: 'Sen đá thạch ngọc nhỏ nhắn, đáng yêu.',
+    description: 'Sen đá thạch ngọc đỏ nổi bật, nhỏ nhắn và dễ chăm.',
   },
   {
     id: '4',
