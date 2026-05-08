@@ -40,7 +40,7 @@ export function Header({
         <div className="flex items-center gap-4 md:gap-8">
           <button
             type="button"
-            className="font-headline flex items-center gap-2 md:gap-3 cursor-pointer transition-transform active:scale-95"
+            className="font-headline flex items-center gap-1 md:gap-1.5 cursor-pointer transition-transform active:scale-95"
             onClick={() => setActiveTab('dashboard')}
           >
             <img
