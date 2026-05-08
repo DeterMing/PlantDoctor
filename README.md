@@ -148,17 +148,7 @@ Thư viện bản đồ đang dùng:
 
 ---
 
-## 9) Lộ trình gợi ý tiếp theo
-
-- Thêm fallback image khi thiếu file ảnh.
-- Thêm bộ lọc nâng cao cho cửa hàng (sắp xếp theo giá, đánh giá).
-- Kết nối API thời tiết thật.
-- Kết nối backend giỏ hàng và đơn hàng.
-- Thêm lưu trữ lịch sử chăm sóc theo tài khoản người dùng.
-
----
-
-## 10) Ghi chú
+## 9) Ghi chú
 
 Đây là phiên bản frontend mô phỏng luồng nghiệp vụ để thử nghiệm trải nghiệm người dùng.
 Mục tiêu ưu tiên: rõ ràng, thân thiện, dễ mở rộng sang bản có dữ liệu thật.

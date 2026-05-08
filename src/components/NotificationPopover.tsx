@@ -19,12 +19,12 @@ export function NotificationPopover({ notifications, isOpen, onClose }: Notifica
     <AnimatePresence>
       {isOpen && (
         <>
-          <div className="fixed inset-0 z-[60]" onClick={onClose}></div>
+          <div className="fixed inset-0 z-[1190] bg-black/10 md:bg-transparent" onClick={onClose}></div>
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: -20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
-            className="absolute right-0 top-16 z-[70] w-96 bg-surface-container-lowest rounded-3xl shadow-2xl border border-outline-variant/20 overflow-hidden"
+            className="fixed left-3 right-3 top-20 md:absolute md:left-auto md:right-0 md:top-16 z-[1200] w-auto md:w-96 bg-surface-container-lowest rounded-3xl shadow-2xl border border-outline-variant/20 overflow-hidden"
           >
             <div className="p-6 border-b border-outline-variant/10 flex items-center justify-between">
               <h3 className="font-headline text-xl font-bold text-primary">Thông báo</h3>
@@ -36,7 +36,7 @@ export function NotificationPopover({ notifications, isOpen, onClose }: Notifica
               </button>
             </div>
             
-            <div className="max-h-[480px] overflow-y-auto">
+            <div className="max-h-[62vh] md:max-h-[480px] overflow-y-auto">
               {notifications.length > 0 ? (
                 notifications.map((notif) => {
                   const Icon = icons[notif.type] || ShieldCheck;

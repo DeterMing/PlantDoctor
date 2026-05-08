@@ -36,7 +36,7 @@ export function Header({
   ];
 
   return (
-    <header className="glass-nav sticky top-0 z-50 border-b border-outline-variant/30 px-4 md:px-6 py-3 md:py-4">
+    <header className="glass-nav sticky top-0 z-[1100] border-b border-outline-variant/30 px-4 md:px-6 py-3 md:py-4">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3">
         <div className="flex min-w-0 items-center gap-3 md:gap-5">
           <button
