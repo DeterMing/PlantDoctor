@@ -30,17 +30,18 @@ export function Header({
     { id: 'dashboard', label: 'Tổng quan' },
     { id: 'diagnostic', label: 'Bác sĩ' },
     { id: 'weather', label: 'Thời tiết' },
+    { id: 'communitymap', label: 'Bản đồ cộng đồng' },
     { id: 'market', label: 'Cửa hàng' },
     { id: 'myplants', label: 'Vườn của tôi' },
   ];
 
   return (
     <header className="glass-nav sticky top-0 z-50 border-b border-outline-variant/30 px-4 md:px-6 py-3 md:py-4">
-      <div className="mx-auto flex max-w-7xl items-center justify-between">
-        <div className="flex items-center gap-4 md:gap-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3">
+        <div className="flex min-w-0 items-center gap-3 md:gap-5">
           <button
             type="button"
-            className="font-headline flex items-center gap-1 md:gap-1.5 cursor-pointer transition-transform active:scale-95"
+            className="font-headline flex shrink-0 items-center gap-1 md:gap-1.5 cursor-pointer transition-transform active:scale-95"
             onClick={() => setActiveTab('dashboard')}
           >
             <img
@@ -50,16 +51,16 @@ export function Header({
               width={40}
               height={40}
             />
-            <span className="text-xl md:text-2xl font-bold italic text-primary">
+            <span className="whitespace-nowrap text-xl md:text-2xl font-bold italic text-primary">
               Plant Doctor
             </span>
           </button>
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex min-w-0 items-center gap-3 lg:gap-4">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-3 py-1 text-sm font-medium transition-all ${
+                className={`whitespace-nowrap px-2.5 lg:px-3 py-1 text-sm font-medium transition-all ${
                   activeTab === tab.id
                     ? 'border-b-2 border-primary text-primary font-bold'
                     : 'text-on-surface-variant hover:text-primary'
@@ -71,13 +72,13 @@ export function Header({
           </nav>
         </div>
 
-        <div className="flex items-center gap-2 md:gap-4">
-          <div className="relative hidden lg:block">
+        <div className="flex shrink-0 items-center gap-2 md:gap-3">
+          <div className="relative hidden xl:block">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-outline" />
             <input
               type="text"
               placeholder="Tìm kiếm..."
-              className="w-48 lg:w-64 rounded-full bg-surface-container-highest border-none py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/20"
+              className="w-44 xl:w-56 rounded-full bg-surface-container-highest border-none py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/20"
             />
           </div>
           

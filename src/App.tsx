@@ -8,7 +8,8 @@ import { MyPlantsView } from './components/MyPlantsView';
 import { SettingsView } from './components/SettingsView';
 import { WeatherView } from './components/WeatherView';
 import { CheckoutView } from './components/CheckoutView';
-import { Plant, Product, Post, WeatherData, Notification, CartItem } from './types';
+import { CommunityMapView } from './components/CommunityMapView';
+import { Plant, Product, Post, WeatherData, Notification, CartItem, NearbyMember } from './types';
 import { AnimatePresence, motion } from 'motion/react';
 import { Camera } from 'lucide-react';
 
@@ -278,6 +279,45 @@ const MOCK_NOTIFICATIONS: Notification[] = [
   }
 ];
 
+const MOCK_NEARBY_MEMBERS: NearbyMember[] = [
+  {
+    id: 'me',
+    name: 'Bạn',
+    avatar: '/images/dashboard/ava.jpg',
+    distanceKm: 0.3,
+    area: 'Cầu Giấy, Hà Nội',
+    lat: 21.0340,
+    lng: 105.7910,
+    online: true,
+    plants: ['Sen đá', 'Kim tiền'],
+    support: 'Tư vấn online'
+  },
+  {
+    id: 'm1',
+    name: 'Minh Quân',
+    avatar: '/images/dashboard/ava_minh_quan.png',
+    distanceKm: 1.1,
+    area: 'Đống Đa, Hà Nội',
+    lat: 21.0166,
+    lng: 105.8262,
+    online: true,
+    plants: ['Trầu bà', 'Lan ý'],
+    support: 'Tư vấn online'
+  },
+  {
+    id: 'm2',
+    name: 'Ngọc Anh',
+    avatar: '/images/dashboard/ava_ngoc_anh.png',
+    distanceKm: 2.4,
+    area: 'Hai Bà Trưng, Hà Nội',
+    lat: 21.0036,
+    lng: 105.8578,
+    online: true,
+    plants: ['Sen đá', 'Hoa giấy'],
+    support: 'Ghé thăm trực tiếp'
+  }
+];
+
 export default function App() {
   const [activeTab, setActiveTab ] = useState('dashboard');
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -318,6 +358,8 @@ export default function App() {
         return <DiagnosticView onBack={() => setActiveTab('dashboard')} />;
       case 'weather':
         return <WeatherView weather={MOCK_WEATHER} />;
+      case 'communitymap':
+        return <CommunityMapView members={MOCK_NEARBY_MEMBERS} />;
       case 'market':
         return <MarketView products={MOCK_PRODUCTS} onAddToCart={handleAddToCart} />;
       case 'myplants':

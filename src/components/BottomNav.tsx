@@ -1,4 +1,4 @@
-import { LayoutDashboard, ShieldPlus, ShoppingBasket, Leaf, CloudSun } from 'lucide-react';
+import { LayoutDashboard, ShieldPlus, ShoppingBasket, Leaf, CloudSun, MapPinned } from 'lucide-react';
 import { motion } from 'motion/react';
 
 interface BottomNavProps {
@@ -11,6 +11,7 @@ export function BottomNav({ activeTab, setActiveTab }: BottomNavProps) {
     { id: 'dashboard', label: 'Trang chủ', icon: LayoutDashboard },
     { id: 'diagnostic', label: 'Bác sĩ', icon: ShieldPlus },
     { id: 'weather', label: 'Thời tiết', icon: CloudSun },
+    { id: 'communitymap', label: 'Cộng đồng', icon: MapPinned },
     { id: 'market', label: 'Cửa hàng', icon: ShoppingBasket },
     { id: 'myplants', label: 'Cây của tôi', icon: Leaf },
   ];

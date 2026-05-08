@@ -85,3 +85,16 @@ export interface CartItem {
   product: Product;
   quantity: number;
 }
+
+export interface NearbyMember {
+  id: string;
+  name: string;
+  avatar: string;
+  distanceKm: number;
+  area: string;
+  lat: number;
+  lng: number;
+  online: boolean;
+  plants: string[];
+  support: 'Tư vấn online' | 'Ghé thăm trực tiếp';
+}
