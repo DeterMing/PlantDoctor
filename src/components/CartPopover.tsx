@@ -18,12 +18,12 @@ export function CartPopover({ items, isOpen, onClose, onRemove, onUpdateQuantity
     <AnimatePresence>
       {isOpen && (
         <>
-          <div className="fixed inset-0 z-[100] bg-black/20 backdrop-blur-sm md:hidden" onClick={onClose} />
+          <div className="fixed inset-0 z-[1190] bg-black/20 backdrop-blur-sm md:hidden" onClick={onClose} />
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            className="absolute right-0 top-full mt-4 w-[calc(100vw-32px)] md:w-96 bg-white rounded-3xl shadow-2xl border border-outline-variant/20 z-[101] overflow-hidden font-body"
+            className="fixed left-3 right-3 top-20 z-[1200] w-auto md:absolute md:left-auto md:right-0 md:top-full md:mt-4 md:w-96 bg-white rounded-3xl shadow-2xl border border-outline-variant/20 overflow-hidden font-body"
           >
             <div className="p-6 border-b border-outline-variant/10 flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -38,7 +38,7 @@ export function CartPopover({ items, isOpen, onClose, onRemove, onUpdateQuantity
               </button>
             </div>
 
-            <div className="max-h-[60vh] overflow-y-auto p-4 space-y-4 no-scrollbar">
+            <div className="max-h-[62vh] md:max-h-[60vh] overflow-y-auto p-4 space-y-4 no-scrollbar">
               {items.length === 0 ? (
                 <div className="py-12 text-center space-y-4">
                   <div className="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center mx-auto opacity-50">
